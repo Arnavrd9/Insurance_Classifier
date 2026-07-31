@@ -55,6 +55,8 @@ If you wish to reproduce the project from the raw datasets, execute the notebook
 
 These notebooks perform data cleaning, feature engineering, model training, and finally launch the decision-support agent.
 
+Note: The raw dataset provided for the assignment has been excluded from the repository using the `.gitignore` file.
+
 ## AI Usage
 Primary AI Assistant:
 - **OpenAI ChatGPT (GPT-5.5)**

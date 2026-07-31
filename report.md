@@ -7,34 +7,16 @@ This task develops an end-to-end machine learning pipeline to predict whether an
 
 # Workflow Summary
 
-Raw Employee Data
-        │
-        ▼
-Data Cleaning
-        │
-        ▼
-employee_cleaned.csv
-        │
-        ▼
-Merge with Regional Profiles
-        │
-        ▼
-Feature Engineering
-        │
-        ▼
-Ordinal Encoding
-        │
-        ▼
-final_merged.csv
-        │
-        ▼
-Random Forest Training
-        │
-        ▼
-Saved Model (.pkl)
-        │
-        ▼
-Prediction & Recommendation Agent
+1.Raw Employee Data
+2.Data Cleaning     
+3.employee_cleaned.csv  
+4.Merge with Regional Profiles  
+5.Feature Engineering    
+6.Ordinal Encoding     
+7.final_merged.csv    
+8.Random Forest Training 
+9.Saved Model (.pkl)  
+10.Prediction & Recommendation Agent
 
 
 The pipeline is divided into four major stages:
@@ -56,11 +38,15 @@ The raw employee dataset contained missing values, inconsistent categorical valu
 - Filled missing categorical values using the **mode** to preserve the most common category.
 - Standardized categorical values to ensure consistency across records.
 - Various Statistical Observations such as **correlation matrix and cramers V** indicated that:
-  **legacy_propensity_score** had a strong correlation with the output variable.So considering this feature in the model       would lead to data leakage and the model would fail to capture non linear patterns.So it was dropped.
-  **application_date** also had a weak cramers value and it had many data irregularities(contact_date>application_date) which would not favour the model.So to avoid it the column was dropped.It would have no say in the prediction in any of the future queries too.
-  The **age and the tenure** were not syncing to(age-tenure<18). This again was fixed by manipulating the tenure.
+  
+  1.**legacy_propensity_score** had a strong correlation with the output variable.So considering this feature in the model       would lead to data leakage and   the      model would fail to capture non linear patterns.So it was dropped.
+  
+  2.**application_date** also had a weak cramers value and it had many data irregularities(contact_date>application_date) which would not favour the model.So to   avoid it the column was dropped.It would have no say in the prediction in any of the future queries too.
+  
+  3.The **age and the tenure** were not syncing to(age-tenure<18). This again was fixed by manipulating the tenure.
+  
   After drawing various inferences raw data the file was saved as:
-  employee_cleaned.csv
+ `employee_cleaned.csv`
 
 This preprocessing stage ensured that no missing values remained before feature engineering and model training.
 
@@ -99,7 +85,7 @@ were transformed using **Ordinal Encoding** with support for unseen categories.
 The id which acted as a primary contained 8 repitations which were again removed to main cardinality.
 
 The processed dataset was then exported as:
-final_merged.csv
+ `final_merged.csv`
 
 
 # 3. Machine Learning Pipeline
@@ -126,16 +112,16 @@ The hyperparameters were set after rigrous testing across various conventional a
 The standard **threshold** for the classification models is **0.5**. But in this case it was tuned to **0.675** in order to get better test results.
 
 After setting the correct hyperparamters the result acheived were as follows:
-Train Accuracy : 0.95775
-**Test Accuracy  : 0.962**
-Accuracy : 0.962
-Precision: 0.966183574879227
-Recall   : 0.9724473257698542
-F1 Score : 0.9693053311793215
-**ROC AUC  : 0.9922977559233384**
-Confusion Matrix
- 724   42
- 34   1200
+- Train Accuracy : 0.95775
+- **Test Accuracy  : 0.962**
+- Accuracy : 0.962
+- Precision: 0.966183574879227
+- Recall   : 0.9724473257698542
+- F1 Score : 0.9693053311793215
+- **ROC AUC  : 0.9922977559233384**
+- Confusion Matrix
+      724   42
+      34   1200
 
 The trained model learnt relationships between employee demographics, employment information, historical enrollment behavior, regional characteristics, and outreach metrics to estimate enrollment probability.
 

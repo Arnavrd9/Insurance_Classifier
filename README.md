@@ -37,7 +37,7 @@ The agent supports natural language queries for prediction, explanation, employe
 - Explicit refusal for prohibited features
 
 ## Instructions to run
-1. commit the repository
+1. clone the repository
 2. install the requirements
 3. run  `agent.ipynb`
 
